@@ -1,5 +1,6 @@
 import { loginDoc } from './auth';
 import { lifeCheckDoc } from './lifecheck';
+import { listDoc } from './list';
 
 export const swaggerDocs = {
   openapi: '3.0.0',
@@ -17,17 +18,18 @@ export const swaggerDocs = {
   },
   servers: [
     {
-      url: 'http://localhost:3000',
+      url: 'http://localhost:8000',
       description: 'Servidor local de desenvolvimento',
     },
     {
-      url: 'http://localhost:3000',
+      url: 'http://localhost:8000',
       description: 'Servidor de produção',
     },
   ],
   paths: {
     ...lifeCheckDoc,
     ...loginDoc,
+    ...listDoc,
   },
   components: {
     securitySchemes: {
