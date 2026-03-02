@@ -1,0 +1,22 @@
+#Pipeline for Continuous Integration 
+name: PR
+
+on:
+  pull_request:
+    branches: [master,develop]
+
+jobs:
+  ci:
+    permissions:
+        contents: read
+    uses: suethttps/pipelines/.github/workflows/node-ci.yml@main
+    with:
+      node_version: '24'
+
+  # test:
+  #   permissions:
+  #       contents: read
+  #   needs: ci
+  #   uses: suethttps/pipelines/.github/workflows/node-test.yml@main
+  #   with:
+  #     node_version: '24'
