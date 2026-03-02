@@ -5,6 +5,8 @@ import { FindByIdListUseCase } from '../application/FindByIdListUseCase';
 import { UpdateListUseCase } from '../application/UpdateListUseCase';
 import { DeleteListUseCase } from '../application/DeleteListUseCase';
 
+
+// TODO: Podemos talvez colocar uns bangas para poder rastrear as ações do user tipo logou add excluiu solicitou etc isso pode se estender as rotas e repositorios
 export class ListController {
   private createListUseCase: CreateListUseCase;
   private findByIdListUseCase: FindByIdListUseCase;
