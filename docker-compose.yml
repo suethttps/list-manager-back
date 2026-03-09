@@ -1,7 +1,14 @@
 services:
+
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    networks:
+      - list-manager-network
+
   postgres:
     image: postgres:17
-    container_name: list-manager-postgres
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password

@@ -6,7 +6,8 @@ export class FindAllListUseCase {
 
   async execute(): Promise<ListResponse[]> {
     try {
-      const response = await this.repository.findMany();
+      // call the repository's findAll method which is guaranteed to exist
+      const response = await this.repository.findAll();
       return response;
     } catch (error) {
       throw new Error('Erro ao buscar list');

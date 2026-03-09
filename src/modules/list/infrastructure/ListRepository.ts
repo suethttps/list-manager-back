@@ -6,12 +6,13 @@ import { IListRepository } from '../domain/IListRepository';
 
 export class ListRepository implements IListRepository {
   private prisma: InstanceType<typeof PrismaClient>;
-
+//TODO: O constructor cria uma nova  instance do Prismaclient, podendo acarretar diversas aberturas de conexões com a base de dados, podendo causar leak de memória ou problemas no poll de conexão
+//TODO: Validar a possibilidade da criação de uma única instância para ser exportada, limitando a abertura de conexões na base.
   constructor() {
     // Instanciar PrismaClient com o adapter MySQL customizado
     this.prisma = new PrismaClient({ adapter });
   }
-
+// TODO: Validar a possibibilidade da criação de um mapper para o return lists.map sendo executado. Visando evitar a duplicação de lógica
   async findAll(): Promise<ListResponse[]> {
     const lists = await this.prisma.list.findMany();
     return lists.map((list: any) => ({
@@ -48,7 +49,7 @@ export class ListRepository implements IListRepository {
       updatedAt: list.updatedAt,
     };
   }
-
+// TODO: Necessária validação de possibilidade de tratamentos de erros vindos da integração com a DB(PRISMA) para que falhas possam ser validadas.
   async update(id: string, request: ListRequest): Promise<ListResponse> {
     const list: any = await this.prisma.list.update({
       where: { id: (id) },
